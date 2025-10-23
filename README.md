@@ -27,7 +27,7 @@ print(data.files)
 
 ## Use PySCF from data
 
-You can use data to PySCF calculations
+You can use data to PySCF calculations. Next code calculate energy of chemical system based on electron density, electron density on spatial grid 
 
 ```python
 import numpy as np
@@ -43,7 +43,7 @@ dm_uks = data["density_matrix"]  # shape [2, nbas, nbas]
 data.close()
 
 # 2. Sum alpha + beta to get RKS initial density (ok if spin == 0)
-dm_rks = dm_uks[0] + dm_uks[1]
+dm = dm_uks[0] + dm_uks[1]
 
 # 3. Create molecule
 mol = gto.M(
@@ -56,14 +56,11 @@ mol = gto.M(
 # 4. RKS SCF with B3LYP
 mf = dft.RKS(mol)
 mf.xc = 'B3LYP'
-mf.max_cycle = 50
 
 # Use summed DM as initial guess (ok if spin == 0)
-mf.kernel(dm0=dm_rks)
+mf.kernel(dm)
 
 # 5. Compute electron density on a spatial grid
-mf.grids.level = 2
-mf.grids.build()
 grid_coords = mf.grids.coords
 ao_values = dft.numint.eval_ao(mol, grid_coords, deriv=0)
 rho = dft.numint.eval_rho(mol, ao_values, mf.make_rdm1(), xctype='LDA')
