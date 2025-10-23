@@ -10,8 +10,15 @@ Each `.npz` file contains the following keys:
 
 ---
 
-## Python Example
+## Example
+
+```python
 import numpy as np
+
+# Load one file
 data = np.load("dm_results_npz/ISO34/ISO34_0_0.npz")
+
+# List the keys stored in the file
 print(data.files)
--> ['elements', 'atom_coordinates', 'charge', 'spin', 'density_matrix']
+# Output:
+# ['elements', 'atom_coordinates', 'charge', 'spin', 'density_matrix']
