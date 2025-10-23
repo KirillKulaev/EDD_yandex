@@ -27,9 +27,7 @@ print(data.files)
 
 ## Use PySCF from data
 
-## Using a UKS Density Matrix for RKS SCF in PySCF
-
-You can use data to PySCF caluclations
+You can use data to PySCF calculations
 
 ```python
 import numpy as np
