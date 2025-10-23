@@ -57,8 +57,8 @@ mol = gto.M(
 mf = dft.RKS(mol)
 mf.xc = 'B3LYP'
 
-# Use DM as initial guess (ok if spin == 0)
-energy = mf.kernel(dm)
+# 5. Use predefined DM (ok if spin == 0)
+energy = mf.kernel(dm, max_cycle=0) # We can skip SCF cause already have dm! (max_cycle=0)
 
 # 5. Compute electron density on a spatial grid
 grid_coords = mf.grids.coords
@@ -66,5 +66,10 @@ ao_values = dft.numint.eval_ao(mol, grid_coords, deriv=0)
 rho = dft.numint.eval_rho(mol, ao_values, mf.make_rdm1(), xctype='LDA')
 
 # 6. Compute dm using PySCF
-dm_new = mf.make_rdm1()
+dm_new = mf.make_rdm1() (equals dm)
+
+# 7. Molecular orbitals and their energies
+mo_coeff = mf.mo_coeff
+mo_energy = mf.mo_energy
+
 
