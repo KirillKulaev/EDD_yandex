@@ -58,7 +58,7 @@ mf = dft.RKS(mol)
 mf.xc = 'B3LYP'
 
 # Use summed DM as initial guess (ok if spin == 0)
-mf.kernel(dm)
+energy = mf.kernel(dm)
 
 # 5. Compute electron density on a spatial grid
 grid_coords = mf.grids.coords
