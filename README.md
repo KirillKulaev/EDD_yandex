@@ -65,3 +65,6 @@ grid_coords = mf.grids.coords
 ao_values = dft.numint.eval_ao(mol, grid_coords, deriv=0)
 rho = dft.numint.eval_rho(mol, ao_values, mf.make_rdm1(), xctype='LDA')
 
+# 6. Compute dm using PySCF
+dm_new = mf.make_rdm1()
+
