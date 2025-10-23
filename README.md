@@ -29,7 +29,7 @@ print(data.files)
 
 ## Using a UKS Density Matrix for RKS SCF in PySCF
 
-If your `.npz` file stores a **UKS density matrix** (`dm` with shape `[2, nbas, nbas]`), you can run a **restricted Kohn-Sham (RKS)** calculation in PySCF by summing the alpha and beta densities.
+You can use data to PySCF caluclations
 
 ```python
 import numpy as np
