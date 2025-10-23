@@ -42,8 +42,8 @@ spin = int(data["spin"])
 dm_uks = data["density_matrix"]  # shape [2, n_basis, n_basis]
 data.close()
 
-# 2. Sum alpha + beta to get RKS initial density (ok if spin == 0)
-dm = dm_uks[0] + dm_uks[1]
+# 2. Sum alpha + beta to get initial density (ok if spin == 0, because in our data we have spin-polarized electron density)
+dm = dm_uks[0] + dm_uks[1] 
 
 # 3. Create molecule
 mol = gto.M(
@@ -53,11 +53,11 @@ mol = gto.M(
     basis='def2-qzvp'
 )
 
-# 4. RKS SCF with B3LYP
+# 4. DFT calculation
 mf = dft.RKS(mol)
 mf.xc = 'B3LYP'
 
-# Use summed DM as initial guess (ok if spin == 0)
+# Use DM as initial guess (ok if spin == 0)
 energy = mf.kernel(dm)
 
 # 5. Compute electron density on a spatial grid
