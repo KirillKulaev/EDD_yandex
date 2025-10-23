@@ -16,7 +16,7 @@ Each `.npz` file contains the following keys:
 import numpy as np
 
 # Load one file
-data = np.load("dm_results_npz/ISO34/ISO34_0_0.npz")
+data = np.load("dm_results_npz/BHPERI/BHPERI_0_0.npz.npz")
 
 # List the keys stored in the file
 print(data.files)
