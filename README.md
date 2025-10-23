@@ -39,7 +39,7 @@ elements = data["elements"]
 coords = data["atom_coordinates"]
 charge = int(data["charge"])
 spin = int(data["spin"])
-dm_uks = data["density_matrix"]  # shape [2, nbas, nbas]
+dm_uks = data["density_matrix"]  # shape [2, n_basis, n_basis]
 data.close()
 
 # 2. Sum alpha + beta to get RKS initial density (ok if spin == 0)
